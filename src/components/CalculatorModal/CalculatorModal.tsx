@@ -59,6 +59,7 @@ export const CalculatorModal: React.FC<Props> = (props: Props) => {
           {FOOD_ITEMS.map((item: FoodItem) => (
             <div className={classes.itemContainer} key={item.name}>
               <FoodTile
+                calorie = {item.kcal}
                 name={item.name}
                 imgSrc={item.imageUrl}
                 value={item.name in values ? values[item.name].value : 0}
