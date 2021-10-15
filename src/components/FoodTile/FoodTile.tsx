@@ -2,7 +2,6 @@ import React, { ChangeEvent, useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { CustomTheme } from "../../style/theme";
 import { CSSProperties } from "@material-ui/styles";
-import { findByLabelText } from "@testing-library/dom";
 
 import Popup from '../Popup/Popup'
 
