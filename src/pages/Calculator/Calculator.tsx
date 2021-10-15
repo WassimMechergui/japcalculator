@@ -71,6 +71,7 @@ export const CalculatorPage: React.FC<Props> = (props: Props) => {
                     name={item.name}
                     imgSrc={item.imageUrl}
                     value={item.name in values ? values[item.name].value : 0}
+                    calorie = {item.kcal}
                     onChange={handleChange(item.name, item.kcal)}
                   />
                 </div>

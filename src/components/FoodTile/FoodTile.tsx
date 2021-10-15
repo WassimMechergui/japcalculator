@@ -1,8 +1,9 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
+import { CustomTheme } from "../../style/theme";
 import { CSSProperties } from "@material-ui/styles";
 
-import { CustomTheme } from "../../style/theme";
+import Popup from '../Popup/Popup'
 
 type ClassNames =
   | "container"
@@ -13,18 +14,23 @@ type ClassNames =
   | "button"
   | "input"
   | "image";
+
+
 interface OwnProps {
   classes: Record<ClassNames, string>;
   imgSrc: string;
   name: string;
-  onChange?: (n: number) => void;
   value: number;
+  calorie : number;
+  onChange?: (n: number) => void;
 }
 
 type Props = OwnProps;
 
 export const FoodTile: React.FC<Props> = (props: Props) => {
-  const { classes, imgSrc, name, value, onChange } = props;
+  const { classes, imgSrc, name, value, calorie, onChange } = props;
+
+  const [shown, show] = useState(false)
 
   const handleChange = (value: number) => () => {
     if (value < 0) {
@@ -38,10 +44,16 @@ export const FoodTile: React.FC<Props> = (props: Props) => {
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     handleChange(Number(event.target.value))();
   };
+  const showDetails = () =>{
+    show(!shown)
+    console.log("show popup")
+  }
 
+  console.log(calorie)
   return (
     <div className={classes.container}>
-      <img src={imgSrc} alt={name} className={classes.image} />
+      {shown ? <Popup name = {name} calories = {calorie} /> : null}
+      <img src={imgSrc} alt={name} className={classes.image} onClick = {showDetails}/>
       <div className={classes.nameContainer}>
         <span className={classes.name}>{name}</span>
 
